@@ -1,14 +1,20 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { useUser } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import InputBase from "@mui/material/InputBase";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: "12px",
+  borderColor: "primary",
+  borderStyle: "solid",
+
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -40,42 +46,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "25ch",
+      width: "12ch",
       "&:focus": {
-        width: "25ch",
+        width: "20ch",
       },
     },
   },
 }));
 
-const SearchBar = () => {
-  const navigate = useNavigate();
-
-  const { setSearchWord } = useUser();
-  const { searchWord } = useUser();
-  const handleOnChange = (event) => {
-    setSearchWord(event.target.value.toLowerCase());
-  };
-
-  const handleClick = (event) => {};
+export default function SearchBar() {
   return (
-    <Toolbar sx={{ mr: 1, color: "black" }} className="searchToolbar">
-      <Search onClick={handleClick}>
+    <Toolbar>
+      <Search>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
-
-        <StyledInputBase
-          label="search"
-          name="search"
-          type="text"
-          value={searchWord}
-          placeholder="Busca por nombre o ciudad "
-          onChange={handleOnChange}
-        />
+        <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
       </Search>
     </Toolbar>
   );
-};
-
-export default SearchBar;
+}

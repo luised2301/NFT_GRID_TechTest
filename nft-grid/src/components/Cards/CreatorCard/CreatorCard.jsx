@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Avatar } from "@mui/material";
 import "./CreatorCard.css";
+import PrimaryButton from "../../Buttons/PrimaryButton/PrimaryButton";
+import SecondaryButton from "../../Buttons/SecondaryButton/SecondaryButton";
 
 export default function CreatorCard({ creatorData }) {
   return (
@@ -19,14 +21,29 @@ export default function CreatorCard({ creatorData }) {
             sx={{ width: 69, height: 69, m: 1 }}
           />
           <Typography
-            sx={{ fontFamily: "Inter", fontSize: "30px", fontWeight: "900" }}
-            component="div"
+            sx={{
+              fontSize: "30px",
+              fontWeight: "900",
+              color: "primary",
+            }}
             children={creatorData.name}
+            className="primary-title"
           />
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Box
+          sx={{
+            flexDirection: "column",
+            display: "flex",
+            spacing: 2,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <PrimaryButton text="Creator´s website" icon="KeyboardArrowRightIcon" />
+          <SecondaryButton text="More Collections" icon="ArrowForwardIcon" />
+        </Box>
       </CardActions>
     </Card>
   );

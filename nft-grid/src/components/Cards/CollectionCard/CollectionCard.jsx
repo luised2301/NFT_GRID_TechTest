@@ -10,9 +10,12 @@ import "./CollectionCard.css";
 
 export default function CollectionCard({ collectionData }) {
   return (
-    <Card className="collection-card" sx={{}}>
+    <Card
+      className="collection-card"
+      sx={{ maxWidth: "50vw", justifyContent: "center", alignItems: "center" }}
+    >
       <CardContent>
-        <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Typography
             sx={{ fontFamily: "Inter", fontSize: "70px", fontWeight: "900" }}
             component="div"

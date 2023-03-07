@@ -5,11 +5,13 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import "./CardContainers.css";
-export default function CardContainer({ itemsData }) {
+export default function CardContainer({ itemsData, collectionName, creatorName }) {
   return (
     <Box className="card-container">
       {itemsData.map((item, index) => {
-        return <ItemCard cardData={item} />;
+        return (
+          <ItemCard cardData={item} collectionName={collectionName} creatorName={creatorName} />
+        );
       })}
     </Box>
   );
