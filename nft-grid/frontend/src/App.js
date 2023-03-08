@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/collection/:collectionId" element={<CollectionPage />}></Route>
-          <Route path="/Main" element={<MainPage />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
         </Routes>
       </div>
     </ThemeProvider>

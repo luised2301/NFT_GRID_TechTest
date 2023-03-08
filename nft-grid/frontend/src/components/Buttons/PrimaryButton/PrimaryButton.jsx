@@ -7,7 +7,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ReactComponent as OpenSeaLogo } from "../../../assets/icons/opensea_logo.svg";
 import "./PrimaryButton.css";
 
-export default function PrimaryButton({ text, icon }) {
+export default function PrimaryButton({ text, icon, onClick }) {
   return (
     <>
       {icon == "KeyboardArrowRightIcon" ? (
@@ -23,6 +23,13 @@ export default function PrimaryButton({ text, icon }) {
           variant="contained"
           endIcon={<OpenSeaLogo className="openSea-logo" height="24px" width="24px" />}
         >
+          {text}
+        </Button>
+      ) : (
+        <></>
+      )}
+      {icon == "none" ? (
+        <Button className="navigate-button" variant="contained" onClick={onClick}>
           {text}
         </Button>
       ) : (

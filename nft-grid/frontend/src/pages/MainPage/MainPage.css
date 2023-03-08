@@ -1,0 +1,10 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+#address-input {
+  width: 50ch !important;
+}
