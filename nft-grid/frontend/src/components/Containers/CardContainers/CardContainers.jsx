@@ -10,7 +10,12 @@ export default function CardContainer({ itemsData, collectionName, creatorName }
     <Box className="card-container">
       {itemsData.map((item, index) => {
         return (
-          <ItemCard cardData={item} collectionName={collectionName} creatorName={creatorName} />
+          <ItemCard
+            cardData={item}
+            key={item.name}
+            collectionName={collectionName}
+            creatorName={creatorName}
+          />
         );
       })}
     </Box>

@@ -13,6 +13,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { IconButton } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import ItemDetailCard from "../Cards/ItemDetailCard/ItemDetailCard";
+import users from "../../data/creator";
 
 const Fade = React.forwardRef(function Fade(props, ref) {
   const { children, in: open, onClick, onEnter, onExited, ownerState, ...other } = props;
@@ -60,7 +61,7 @@ const style = {
   p: 4,
 };
 
-export default function DetailModal({ creatorName, collectionName }) {
+export default function DetailModal({ creatorName, creatorAddress, collectionName }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -108,7 +109,7 @@ export default function DetailModal({ creatorName, collectionName }) {
                 <CancelIcon color="primary" fontSize="16px" />
               </IconButton>
             </Box>
-            <ItemDetailCard itemDetail={itemDetail.item} />
+            <ItemDetailCard itemDetail={itemDetail.item} ownerData={users} />
             <Box></Box>
             <Typography id="spring-modal-title" variant="h6" component="h2">
               Text in a modal

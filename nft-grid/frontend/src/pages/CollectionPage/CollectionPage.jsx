@@ -50,6 +50,7 @@ const CollectionPage = () => {
         itemsData={items.items}
         collectionName={collection.collection.name}
         creatorName={users.users[0].name}
+        creatorAdress={users.users[0].address}
       ></CardContainer>
     </div>
   );
