@@ -60,7 +60,7 @@ const CollectionPage = () => {
           <SecondaryButton text="Filter" icon="FilterAltIcon" />
         </Box>
       </Box>
-      {contractData?.name ? (
+      {contractData?.name && nftList ? (
         <CardContainer
           itemsData={nftList}
           collectionName={contractData.name}

@@ -21,7 +21,11 @@ export default function ItemCardLoading({
 }) {
   return (
     <Card className="item-card" sx={{ maxWidth: 410, m: 2 }}>
-      <Skeleton sx={{ height: 400, aspectRatio: "1/1" }} animation="wave" variant="rectangular" />
+      <Skeleton
+        sx={{ height: { xs: 360, md: 400 }, aspectRatio: "1/1" }}
+        animation="wave"
+        variant="rectangular"
+      />
 
       <CardContent sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <Typography
@@ -33,7 +37,7 @@ export default function ItemCardLoading({
           fontFamily="Inter"
           alignItems="center"
         >
-          {<Skeleton />}
+          {<Skeleton width={"15ch"} />}
         </Typography>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon color="primary" children="likes" />
