@@ -23,10 +23,11 @@ export default function ItemCard({
     <Card className="item-card" sx={{ maxWidth: 410, m: 2 }}>
       <CardMedia
         component="img"
-        image={parsedCardData.image}
+        image={parsedCardData.image.replace("ipfs://", "https://ipfs.io/ipfs/")}
         sx={{ aspectRatio: "1/1" }}
         alt={`${parsedCardData.name} IMAGE`}
       />
+
       <CardContent sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <Typography
           display="flex"
