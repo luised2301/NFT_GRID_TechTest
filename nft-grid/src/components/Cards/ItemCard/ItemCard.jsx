@@ -25,7 +25,7 @@ export default function ItemCard({
         component="img"
         image={parsedCardData.image}
         sx={{ aspectRatio: "1/1" }}
-        alt="Paella dish"
+        alt={`${parsedCardData.name} IMAGE`}
       />
       <CardContent sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <Typography
