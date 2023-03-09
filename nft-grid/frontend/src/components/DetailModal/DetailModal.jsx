@@ -6,14 +6,11 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useSpring, animated } from "@react-spring/web";
-import SecondaryButton from "../Buttons/SecondaryButton/SecondaryButton";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import itemDetail from "../../data/itemDetail";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { IconButton } from "@mui/material";
-import CardMedia from "@mui/material/CardMedia";
 import ItemDetailCard from "../Cards/ItemDetailCard/ItemDetailCard";
-import users from "../../data/creator";
+import useFetchItemDetail from "../../services/useFetchItemDetail";
 
 const Fade = React.forwardRef(function Fade(props, ref) {
   const { children, in: open, onClick, onEnter, onExited, ownerState, ...other } = props;
@@ -53,73 +50,86 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "90vw",
-  height: "90vh",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display: "flex",
+  justifyContent: "space-evenly",
+  flexDirection: "column",
+  width: "80%",
 };
 
-export default function DetailModal({ creatorName, creatorAddress, collectionName }) {
+export default function DetailModal({ collectionName, collectionAddress, tokenId, detailData }) {
+  const { itemData, itemMetadata } = useFetchItemDetail(collectionAddress, tokenId);
+
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
-  return (
-    <div>
-      <Button
-        className="secondary-button"
-        variant="contained"
-        color="secondary"
-        onClick={handleOpen}
-        endIcon={<ArrowForwardIcon />}
-      >
-        More
-      </Button>
+  if (itemMetadata) {
+    return (
+      <div>
+        <Button
+          className="secondary-button"
+          variant="contained"
+          color="secondary"
+          onClick={handleOpen}
+          endIcon={<ArrowForwardIcon />}
+        >
+          More
+        </Button>
 
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            TransitionComponent: Fade,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography
-                sx={{
-                  display: "flex",
-                  fontSize: "14px",
-                  fontWeight: 400,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {`${creatorName} | ${collectionName} | ${itemDetail.item.name}`}
+        <Modal
+          aria-labelledby="spring-modal-title"
+          aria-describedby="spring-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              TransitionComponent: Fade,
+            },
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography
+                  sx={{
+                    display: "flex",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {`| ${collectionName} | ${itemMetadata.name}`}
+                </Typography>
+                <IconButton aria-label="close" size="large" onClick={handleClose}>
+                  <CancelIcon color="primary" fontSize="16px" />
+                </IconButton>
+              </Box>
+              <ItemDetailCard
+                itemData={itemData}
+                itemMetadata={itemMetadata}
+                ownerData={itemMetadata}
+              />
+              <Typography id="spring-modal-title" variant="h6" component="h2">
+                Text in a modal
               </Typography>
-              <IconButton aria-label="close" size="large" onClick={handleClose}>
-                <CancelIcon color="primary" fontSize="16px" />
-              </IconButton>
+              <Typography id="spring-modal-description" sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
             </Box>
-            <ItemDetailCard itemDetail={itemDetail.item} ownerData={users} />
-            <Box></Box>
-            <Typography id="spring-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
+          </Fade>
+        </Modal>
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }

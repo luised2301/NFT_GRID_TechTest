@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useFetchCollectionItems(collectionAddress) {
-  const [itemsData, setData] = useState(null);
-  const [itemsError, setError] = useState(null);
-  const [itemsLoading, setLoading] = useState(false);
+export default function useGetNFTContractMetadata(collectionAddress) {
+  const [contractData, setData] = useState(null);
+  const [contractError, setError] = useState(null);
+  const [contractLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async function () {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTsFromCollection?limit=20&address=${collectionAddress}`,
+          `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTContractMetadata?address=${collectionAddress}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -29,5 +29,5 @@ export default function useFetchCollectionItems(collectionAddress) {
     })();
   }, [collectionAddress]);
 
-  return { itemsData, itemsError, itemsLoading };
+  return { contractData, contractError, contractLoading };
 }

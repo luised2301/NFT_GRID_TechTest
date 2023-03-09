@@ -12,7 +12,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Routes>
-          <Route path="/collection/:collectionId" element={<CollectionPage />}></Route>
+          <Route path="/collection/:collectionAddress" element={<CollectionPage />}></Route>
           <Route path="/" element={<MainPage />}></Route>
         </Routes>
       </div>

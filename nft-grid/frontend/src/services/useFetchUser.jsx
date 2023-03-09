@@ -5,7 +5,6 @@ export default function useFetchUSer({ collectionId, itemId }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { REACT_APP_API_ENDPOINT } = process.env;
 
   useEffect(() => {
     (async function () {
@@ -17,7 +16,7 @@ export default function useFetchUSer({ collectionId, itemId }) {
         }
         setLoading(true);
         const response = await axios.get(
-          `${REACT_APP_API_ENDPOINT}/item/${collectionId}/${itemId}`,
+          `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/item/${collectionId}/${itemId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

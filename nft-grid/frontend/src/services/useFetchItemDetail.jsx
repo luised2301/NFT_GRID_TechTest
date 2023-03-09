@@ -1,27 +1,37 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useFetchItemDetail({ collectionId, itemId }) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const { REACT_APP_API_ENDPOINT } = process.env;
+export default function useFetchCollectionMetadata(collectionAddress, tokenId) {
+  const [itemData, setData] = useState(null);
+
+  const [itemMetadata, setItemMetadata] = useState(null);
+  const [itemError, setError] = useState(null);
+  const [itemLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async function () {
       try {
         setLoading(true);
         const response = await axios.get(
-          `${REACT_APP_API_ENDPOINT}/item/${collectionId}/${itemId}`
+          `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTMetadata?address=${collectionAddress}&tokenId=${tokenId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
-        setData(response.data.data.item);
+        if (response !== undefined) {
+          setData(response.data);
+
+          setItemMetadata(JSON.parse(response.data.metadata));
+        }
       } catch (err) {
         setError(err);
       } finally {
         setLoading(false);
       }
     })();
-  }, [url]);
+  }, [collectionAddress, tokenId]);
 
-  return { data, error, loading };
+  return { itemData, itemError, itemLoading, itemMetadata };
 }
