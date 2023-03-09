@@ -19,6 +19,7 @@ export default function PrimaryButton({ text, icon, onClick, collectionId, token
       )}
       {icon === "openSeaLogo" ? (
         <Button
+          sx={{ m: 2 }}
           className="openSea-button"
           variant="contained"
           endIcon={<OpenSeaLogo className="openSea-logo" height="24px" width="24px" />}
