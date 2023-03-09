@@ -18,7 +18,7 @@ const MainPage = () => {
   };
   return (
     <div className="landing-page">
-      <Typography sx={{ fontSize: "70px", fontWeight: 900 }}>
+      <Typography sx={{ fontSize: "36px", fontWeight: 900 }}>
         Insert a NFT Collection Address to browse
       </Typography>
       <Paper
@@ -31,7 +31,7 @@ const MainPage = () => {
           variant="outlined"
           placeholder="Insert Collection Address"
           onChange={handleAddressChange}
-          sx={{ m: 3 }}
+          sx={{ m: 3, fontSize: { xs: "8px", md: "16px" }, width: { lg: "42ch" } }}
         />
 
         <PrimaryButton text="Search Collection" icon="none" onClick={handleSubmit} />
