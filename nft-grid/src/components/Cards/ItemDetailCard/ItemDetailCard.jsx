@@ -38,7 +38,7 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
         <Box className="owner-box" sx={{ display: "flex" }}>
           <Box sx={{ width: "fit-content" }}>
             <Typography fontWeight={700} fontSize="16px" children="Owner´s address" />
-            <Typography className="owner-adress-text" children={itemData.owner_of} />
+            <Typography className="owner-adress-text" children="ownerAdress" />
           </Box>
         </Box>
         <Box className="description-box">
@@ -56,12 +56,6 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
             text="Buy Now"
             collectionId={itemData.token_address}
             tokenId={itemData.token_id}
-          />
-          <Typography
-            fontWeight={400}
-            fontSize="14px"
-            paddingY="5px"
-            children={itemData.description}
           />
         </Box>
       </Box>

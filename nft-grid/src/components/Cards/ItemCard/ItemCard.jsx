@@ -63,6 +63,7 @@ export default function ItemCard({
         creatorName={creatorName}
         collectionAddress={collectionAddress}
         tokenId={tokenId}
+        detailData={parsedCardData}
       />
     </Card>
   );

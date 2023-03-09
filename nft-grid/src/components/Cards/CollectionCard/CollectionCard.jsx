@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 import "./CollectionCard.css";
 import { Skeleton } from "@mui/material";
 
-export default function CollectionCard({ collectionData }) {
-  if (collectionData?.name) {
+export default function CollectionCard({ collectionAddress, collectionName }) {
+  if (collectionAddress) {
     return (
       <Card className="collection-card" sx={{ justifyContent: "center", alignItems: "center" }}>
         <CardContent>
@@ -15,7 +15,7 @@ export default function CollectionCard({ collectionData }) {
             <Typography
               sx={{ fontFamily: "Inter", fontSize: { xs: "36px", md: "70px" }, fontWeight: "900" }}
               component="div"
-              children={collectionData.name}
+              children={collectionName}
             />
           </Box>
           <Typography
@@ -32,7 +32,7 @@ export default function CollectionCard({ collectionData }) {
               borderRadius: "8px",
             }}
             component="div"
-            children={collectionData.token_address}
+            children={collectionAddress}
           />
         </CardContent>
       </Card>

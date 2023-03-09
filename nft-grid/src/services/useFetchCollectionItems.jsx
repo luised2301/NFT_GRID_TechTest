@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useFetchCollectionItems(collectionAddress) {
-  const [itemsData, setData] = useState(null);
-  const [itemsError, setError] = useState(null);
-  const [itemsLoading, setLoading] = useState(false);
+  const [collectionData, setData] = useState(null);
+  const [collectionError, setError] = useState(null);
+  const [collectionLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -29,5 +29,5 @@ export default function useFetchCollectionItems(collectionAddress) {
     })();
   }, [collectionAddress]);
 
-  return { itemsData, itemsError, itemsLoading };
+  return { collectionData, collectionError, collectionLoading };
 }
