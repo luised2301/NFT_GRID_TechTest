@@ -4,7 +4,8 @@ import Paper from "@mui/material/Paper";
 import PrimaryButton from "../../components/Buttons/PrimaryButton/PrimaryButton";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -36,6 +37,27 @@ const MainPage = () => {
 
         <PrimaryButton text="Search Collection" icon="none" onClick={handleSubmit} />
       </Paper>
+      <Box>
+        <Typography>Recomended Collections</Typography>
+        <Button
+          variant="contained"
+          sx={{ m: 2 }}
+          onClick={() => {
+            navigate("/collection/0xbd3531da5cf5857e7cfaa92426877b022e612cf8");
+          }}
+        >
+          Pudgy Penguins
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ m: 2 }}
+          onClick={() => {
+            navigate("/collection/0x2efa07cac3395599db83035d196f2a0e7263f766");
+          }}
+        >
+          The Flower Girls
+        </Button>
+      </Box>
     </div>
   );
 };

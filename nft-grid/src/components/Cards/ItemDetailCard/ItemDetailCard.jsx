@@ -18,7 +18,7 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
       <CardMedia
         className="item-image"
         component="img"
-        image={itemMetadata.image}
+        image={itemMetadata.image.replace("ipfs://", "https://ipfs.io/ipfs/")}
         sx={{
           aspectRatio: "1/1",
           maxWidth: "400px",
