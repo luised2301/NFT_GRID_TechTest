@@ -60,16 +60,14 @@ const style = {
   width: "80%",
 };
 
-export default function DetailModal({ collectionName, collectionAddress, tokenId, detailData }) {
-  const { itemData, itemMetadata } = useFetchItemDetail(collectionAddress, tokenId);
-
+export default function DetailModal({ collectionName, detailData }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
 
-  if (itemMetadata) {
+  if (detailData) {
     return (
       <div>
         <Button
@@ -107,17 +105,13 @@ export default function DetailModal({ collectionName, collectionAddress, tokenId
                     alignItems: "center",
                   }}
                 >
-                  {`| ${collectionName} | ${itemMetadata.name}`}
+                  {`| ${collectionName} | ${detailData.name}`}
                 </Typography>
                 <IconButton aria-label="close" size="large" onClick={handleClose}>
                   <CancelIcon color="primary" fontSize="16px" />
                 </IconButton>
               </Box>
-              <ItemDetailCard
-                itemData={itemData}
-                itemMetadata={itemMetadata}
-                ownerData={itemMetadata}
-              />
+              <ItemDetailCard itemData={detailData} itemMetadata={detailData} ownerData="owner" />
             </Box>
           </Fade>
         </Modal>

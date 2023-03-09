@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./CollectionPage.css";
 import CardContainer from "../../components/Containers/CardContainers/CardContainers";
 import { Box, Typography } from "@mui/material";
@@ -10,17 +10,19 @@ import SearchBar from "../../components/Input/SearchBar/Search";
 import SecondaryButton from "../../components/Buttons/SecondaryButton/SecondaryButton";
 import useGetNFTContractMetadata from "../../services/useGetNftContractMetadata";
 import ItemCardLoading from "../../components/Cards/ItemCardLoading/ItemCardLoading";
+import useFetchCollectionItems from "../../services/useFetchCollectionItems";
 
 const CollectionPage = () => {
   const params = useParams();
-
   const { collectionAddress } = params;
-  const { itemsData, itemsLoading, itemsError, nftList } =
-    useFetchCollectionMetadata(collectionAddress);
-  const { contractData, contractLoading, contractError } =
-    useGetNFTContractMetadata(collectionAddress);
+  const { collectionData, collectionLoading, collectionError } =
+    useFetchCollectionItems(collectionAddress);
+  const [collectionToDisplay, setCollectionToDisplay] = useState(false);
 
-  // const { itemsData, itemsLoading, itemsError } = useFetchCollectionItems(collectionId);
+  useEffect(() => {
+    setCollectionToDisplay(collectionData);
+  }, [collectionData]);
+
   return (
     <div className="page-container">
       <Box
@@ -33,9 +35,16 @@ const CollectionPage = () => {
           width: "auto",
         }}
       >
-        <CollectionCard collectionData={contractData} />
+        {collectionToDisplay ? (
+          <CollectionCard
+            collectionAddress={collectionData.result[0].token_address}
+            collectionName={collectionData.result[0].name}
+            collectionLoading={collectionLoading}
+          />
+        ) : (
+          <CollectionCard collectionLoading={collectionLoading} />
+        )}
       </Box>
-
       <Box
         className="browse-collection-title"
         sx={{
@@ -68,11 +77,11 @@ const CollectionPage = () => {
           </div>
         </Box>
       </Box>
-      {contractData?.name && nftList ? (
+      {collectionToDisplay ? (
         <CardContainer
-          itemsData={nftList}
-          collectionName={contractData.name}
-          collectionAddress={collectionAddress}
+          itemsData={collectionData.result}
+          collectionAddress={collectionData.result[0].token_address}
+          collectionName={collectionData.result[0].name}
         ></CardContainer>
       ) : (
         <Box
