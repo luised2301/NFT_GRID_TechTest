@@ -6,7 +6,17 @@ export default function CardContainer({ itemsData, collectionName, collectionAdd
   return (
     <>
       {itemsData && (
-        <Box className="card-container">
+        <Box
+          className="card-container"
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            mx: 3,
+            width: "fit-content",
+          }}
+        >
           {itemsData.map((item, index) => {
             return (
               <ItemCard
