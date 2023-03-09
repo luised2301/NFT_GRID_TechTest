@@ -21,7 +21,11 @@ export default function ItemCardLoading({
 }) {
   return (
     <Card className="item-card" sx={{ maxWidth: 410, m: 2 }}>
-      <Skeleton sx={{ height: 400, aspectRatio: "1/1" }} animation="wave" variant="rectangular" />
+      <Skeleton
+        sx={{ height: { xs: 360, md: 400 }, aspectRatio: "1/1" }}
+        animation="wave"
+        variant="rectangular"
+      />
 
       <CardContent sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
         <Typography
