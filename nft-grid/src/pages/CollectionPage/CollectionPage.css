@@ -1,17 +1,8 @@
-.page-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .browse-collection-title {
   padding-top: 40px;
   padding-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 60px;
-  margin-right: 60px;
   width: 95vw;
 }

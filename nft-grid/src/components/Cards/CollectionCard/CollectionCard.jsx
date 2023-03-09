@@ -9,14 +9,11 @@ import { Skeleton } from "@mui/material";
 export default function CollectionCard({ collectionData }) {
   if (collectionData?.name) {
     return (
-      <Card
-        className="collection-card"
-        sx={{ maxWidth: "90vw", justifyContent: "center", alignItems: "center" }}
-      >
+      <Card className="collection-card" sx={{ justifyContent: "center", alignItems: "center" }}>
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
             <Typography
-              sx={{ fontFamily: "Inter", fontSize: "70px", fontWeight: "900" }}
+              sx={{ fontFamily: "Inter", fontSize: { xs: "36px", md: "70px" }, fontWeight: "900" }}
               component="div"
               children={collectionData.name}
             />
@@ -26,7 +23,7 @@ export default function CollectionCard({ collectionData }) {
               display: "flex",
               width: "auto",
               fontFamily: "Inter",
-              fontSize: { xs: "10px", md: "16px" },
+              fontSize: { xs: "12px", sm: "16px" },
               fontWeight: "400",
               textAlign: "left",
               borderColor: "primmary",
@@ -49,9 +46,9 @@ export default function CollectionCard({ collectionData }) {
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
             <Typography
-              sx={{ fontFamily: "Inter", fontSize: "70px", fontWeight: "900" }}
+              sx={{ fontFamily: "Inter", fontSize: { xs: "36px", md: "70px" }, fontWeight: "900" }}
               component="div"
-              children={<Skeleton width={400} />}
+              children={<Skeleton sx={{ width: { xs: 300, md: 400 } }} />}
             />
           </Box>
           <Typography
@@ -68,7 +65,7 @@ export default function CollectionCard({ collectionData }) {
               borderRadius: "8px",
             }}
             component="div"
-            children={<Skeleton width={350} />}
+            children={<Skeleton sx={{ width: { xs: 300, md: 400 } }} />}
           />
         </CardContent>
       </Card>

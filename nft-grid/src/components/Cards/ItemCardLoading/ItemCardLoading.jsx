@@ -20,9 +20,12 @@ export default function ItemCardLoading({
   loading,
 }) {
   return (
-    <Card className="item-card" sx={{ maxWidth: 410, m: 2 }}>
+    <Card
+      className="item-card"
+      sx={{ maxWidth: { xs: 370, md: 410 }, mx: { xs: 0, md: 2 }, my: 2 }}
+    >
       <Skeleton
-        sx={{ height: { xs: 360, md: 400 }, aspectRatio: "1/1" }}
+        sx={{ height: { xs: 330, md: 400 }, aspectRatio: "1/1" }}
         animation="wave"
         variant="rectangular"
       />

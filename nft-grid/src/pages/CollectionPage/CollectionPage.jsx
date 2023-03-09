@@ -25,7 +25,13 @@ const CollectionPage = () => {
     <div className="page-container">
       <Box
         className="page-header"
-        sx={{ alignItems: "left", display: "flex", width: "auto", mx: 3 }}
+        sx={{
+          display: "flex",
+          alignItems: "left",
+          flexDirection: "colum",
+          justifyContent: { xs: "center", md: "left" },
+          width: "auto",
+        }}
       >
         <CollectionCard collectionData={contractData} />
       </Box>
@@ -39,7 +45,7 @@ const CollectionPage = () => {
           justifyContent: "space-between",
           alignItems: "center",
 
-          mx: { xs: 1, md: 3 },
+          px: { xs: 1, md: 3 },
           flexDirection: { xs: "column", md: "row" },
         }}
       >
@@ -48,7 +54,7 @@ const CollectionPage = () => {
         </Typography>
         <Box
           sx={{
-            flexDirection: "row",
+            flexDirection: { xs: "column", sm: "row" },
             display: "flex",
             spacing: 2,
             justifyContent: "center",
@@ -56,8 +62,10 @@ const CollectionPage = () => {
           }}
         >
           <SearchBar />
-          <SecondaryButton text="Sort By" icon="SortIcon" />
-          <SecondaryButton text="Filter" icon="FilterAltIcon" />
+          <div>
+            <SecondaryButton text="Sort By" icon="SortIcon" />
+            <SecondaryButton text="Filter" icon="FilterAltIcon" />
+          </div>
         </Box>
       </Box>
       {contractData?.name && nftList ? (
