@@ -9,6 +9,7 @@ import "./CollectionPage.css";
 import SearchBar from "../../components/Input/SearchBar/Search";
 import SecondaryButton from "../../components/Buttons/SecondaryButton/SecondaryButton";
 import useGetNFTContractMetadata from "../../services/useGetNftContractMetadata";
+import ItemCardLoading from "../../components/Cards/ItemCardLoading/ItemCardLoading";
 
 const CollectionPage = () => {
   const params = useParams();
@@ -26,7 +27,7 @@ const CollectionPage = () => {
         className="page-header"
         sx={{ alignItems: "left", display: "flex", width: "auto", mx: 3 }}
       >
-        {contractData?.name && <CollectionCard collectionData={contractData} />}
+        <CollectionCard collectionData={contractData} />
       </Box>
 
       <Box
@@ -59,12 +60,29 @@ const CollectionPage = () => {
           <SecondaryButton text="Filter" icon="FilterAltIcon" />
         </Box>
       </Box>
-      {contractData?.name && contractData?.name && (
+      {contractData?.name ? (
         <CardContainer
           itemsData={nftList}
           collectionName={contractData.name}
           collectionAddress={collectionAddress}
         ></CardContainer>
+      ) : (
+        <Box
+          className="card-container"
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            mx: 3,
+            width: "fit-content",
+          }}
+        >
+          <ItemCardLoading />
+          <ItemCardLoading />
+          <ItemCardLoading />
+          <ItemCardLoading />
+        </Box>
       )}
     </div>
   );
