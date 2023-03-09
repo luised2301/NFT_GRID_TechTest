@@ -10,7 +10,7 @@ export default function CollectionCard({ collectionData }) {
     return (
       <Card
         className="collection-card"
-        sx={{ maxWidth: "50vw", justifyContent: "center", alignItems: "center" }}
+        sx={{ maxWidth: "90vw", justifyContent: "center", alignItems: "center" }}
       >
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
@@ -22,8 +22,10 @@ export default function CollectionCard({ collectionData }) {
           </Box>
           <Typography
             sx={{
+              display: "flex",
+              width: "auto",
               fontFamily: "Inter",
-              fontSize: "16px",
+              fontSize: { xs: "12px", md: "16px" },
               fontWeight: "400",
               textAlign: "left",
               borderColor: "primmary",

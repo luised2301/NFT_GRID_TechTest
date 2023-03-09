@@ -24,12 +24,24 @@ const CollectionPage = () => {
     <div className="page-container">
       <Box
         className="page-header"
-        sx={{ alignItems: "left", display: "flex", width: "100%", pl: 5 }}
+        sx={{ alignItems: "left", display: "flex", width: "auto", mx: 3 }}
       >
         <CollectionCard collectionData={contractData} />
       </Box>
 
-      <Box className="browse-collection-title">
+      <Box
+        className="browse-collection-title"
+        sx={{
+          pt: 3,
+          pb: 3,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+
+          mx: { xs: 1, md: 3 },
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
         <Typography sx={{ fontSize: "30px", fontWeight: 900, fontFamily: "Inter" }}>
           Browse Collection
         </Typography>
