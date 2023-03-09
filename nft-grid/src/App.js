@@ -1,15 +1,22 @@
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
+import CollectionPage from "./pages/CollectionPage/CollectionPage";
+import { ThemeProvider } from "@mui/material/styles";
+
+import theme from "./theme/theme";
 
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-      </Routes>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Routes>
+          <Route path="/collection/:collectionAddress" element={<CollectionPage />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 

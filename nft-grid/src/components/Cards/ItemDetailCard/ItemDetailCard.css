@@ -1,0 +1,32 @@
+.description-box {
+  border-top-color: #ececec;
+  border-bottom-color: #ececec;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  height: fit-content;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-width: 2px;
+}
+.owner-box {
+  padding-top: 24px;
+  border-top-color: #ececec;
+  border-top-style: solid;
+  border-width: 2px;
+}
+
+.owner-adress-text {
+  font-size: 16px;
+  font-weight: 700;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  width: fit-content;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 24px !important;
+  margin-bottom: 24px !important;
+}
