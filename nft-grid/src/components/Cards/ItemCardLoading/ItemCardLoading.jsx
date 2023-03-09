@@ -33,7 +33,7 @@ export default function ItemCardLoading({
           fontFamily="Inter"
           alignItems="center"
         >
-          {<Skeleton />}
+          {<Skeleton width={"15ch"} />}
         </Typography>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon color="primary" children="likes" />

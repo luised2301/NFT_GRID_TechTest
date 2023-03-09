@@ -26,7 +26,7 @@ export default function CollectionCard({ collectionData }) {
               display: "flex",
               width: "auto",
               fontFamily: "Inter",
-              fontSize: { xs: "12px", md: "16px" },
+              fontSize: { xs: "10px", md: "16px" },
               fontWeight: "400",
               textAlign: "left",
               borderColor: "primmary",
