@@ -26,7 +26,7 @@ const CollectionPage = () => {
         className="page-header"
         sx={{ alignItems: "left", display: "flex", width: "auto", mx: 3 }}
       >
-        <CollectionCard collectionData={contractData} />
+        {contractData?.name && <CollectionCard collectionData={contractData} />}
       </Box>
 
       <Box
@@ -59,7 +59,7 @@ const CollectionPage = () => {
           <SecondaryButton text="Filter" icon="FilterAltIcon" />
         </Box>
       </Box>
-      {contractData?.name && (
+      {contractData?.name && contractData?.name && (
         <CardContainer
           itemsData={nftList}
           collectionName={contractData.name}
