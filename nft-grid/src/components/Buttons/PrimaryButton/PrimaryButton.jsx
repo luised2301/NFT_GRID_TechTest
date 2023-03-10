@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ReactComponent as OpenSeaLogo } from "../../../assets/icons/opensea_logo.svg";
