@@ -57,10 +57,13 @@ const style = {
   display: "flex",
   justifyContent: "space-evenly",
   flexDirection: "column",
-  width: "80%",
+
+  minWidth: { md: "90%", lg: "70%" },
+  maxWidth: { md: "90%", lg: "70%" },
+  width: { xs: "80%", sm: "auto" },
 };
 
-export default function DetailModal({ collectionName, detailData }) {
+export default function DetailModal({ collectionName, detailData, tokenId, collectionAddress }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -111,7 +114,13 @@ export default function DetailModal({ collectionName, detailData }) {
                   <CancelIcon color="primary" fontSize="16px" />
                 </IconButton>
               </Box>
-              <ItemDetailCard itemData={detailData} itemMetadata={detailData} ownerData="owner" />
+              <ItemDetailCard
+                itemData={detailData}
+                itemMetadata={detailData}
+                tokenId={tokenId}
+                collectionAddress={collectionAddress}
+                ownerData="owner"
+              />
             </Box>
           </Fade>
         </Modal>

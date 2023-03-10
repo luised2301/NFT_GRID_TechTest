@@ -4,12 +4,10 @@
   border-top-style: solid;
   border-bottom-style: solid;
   height: fit-content;
-  padding-top: 24px;
-  padding-bottom: 24px;
+
   border-width: 2px;
 }
 .owner-box {
-  padding-top: 24px;
   border-top-color: #ececec;
   border-top-style: solid;
   border-width: 2px;

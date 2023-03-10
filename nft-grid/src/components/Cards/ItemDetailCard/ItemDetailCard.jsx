@@ -6,12 +6,12 @@ import PrimaryButton from "../../Buttons/PrimaryButton/PrimaryButton";
 import "./ItemDetailCard.css";
 import { Avatar } from "@mui/material";
 
-export default function ItemDetailCard({ itemMetadata, itemData }) {
+export default function ItemDetailCard({ itemMetadata, itemData, tokenId, collectionAddress }) {
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
       }}
     >
@@ -22,6 +22,7 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
         sx={{
           aspectRatio: "1/1",
           maxWidth: "400px",
+          maxHeight: { xs: "300px", md: "400px" },
           borderColor: "primary",
           borderStyle: "solid",
           borderRadius: "8px",
@@ -31,18 +32,29 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
 
       <Box sx={{ display: "flex", flexDirection: "column", maxWidth: "75%", mx: 3 }}>
         <Box>
-          <Typography fontWeight={900} fontSize="70px">
+          <Typography fontWeight={900} sx={{ fontSize: { xs: "24px", md: "70px" } }}>
             {itemMetadata.name}
           </Typography>
         </Box>
         <Box className="owner-box" sx={{ display: "flex" }}>
           <Box sx={{ width: "fit-content" }}>
-            <Typography fontWeight={700} fontSize="16px" children="Owner´s address" />
+            <Typography
+              sx={{ pt: { xs: 1, md: 2 } }}
+              fontWeight={700}
+              fontSize="16px"
+              children="Owner´s address"
+            />
             <Typography className="owner-adress-text" children="ownerAdress" />
           </Box>
         </Box>
         <Box className="description-box">
-          <Typography fontWeight={700} fontSize="16px" paddingY="5px" children="Description" />
+          <Typography
+            sx={{ py: { xs: 1, md: 2 } }}
+            fontWeight={700}
+            fontSize="16px"
+            paddingY="5px"
+            children="Description"
+          />
           <Typography
             fontWeight={400}
             fontSize="14px"
@@ -54,8 +66,8 @@ export default function ItemDetailCard({ itemMetadata, itemData }) {
           <PrimaryButton
             icon="openSeaLogo"
             text="Buy Now"
-            collectionId={itemData.token_address}
-            tokenId={itemData.token_id}
+            collectionId={collectionAddress}
+            tokenId={tokenId}
           />
         </Box>
       </Box>
