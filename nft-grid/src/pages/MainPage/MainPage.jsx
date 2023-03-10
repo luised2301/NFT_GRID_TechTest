@@ -16,14 +16,12 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = useState("");
-  const [searchButtonDisabled, setSearchButtonDisabled] = useState(true);
 
   const formik = useFormik({
     initialValues: {},
     validationSchema: searchSchema,
     onSubmit: (values) => {
-      navigate(`/collection/${address}`);
+      navigate(`/collection/${formik.values.addressInput}`);
     },
   });
 
