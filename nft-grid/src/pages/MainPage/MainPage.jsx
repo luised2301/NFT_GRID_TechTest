@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from "react";
+import { useFormik } from "formik";
+import { searchSchema } from "../../services/SchemesValidation/searchSchema";
 import "./MainPage.css";
 import Paper from "@mui/material/Paper";
 import PrimaryButton from "../../components/Buttons/PrimaryButton/PrimaryButton";
@@ -6,17 +9,24 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { AddToHomeScreenSharp } from "@mui/icons-material";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [address, setAddress] = React.useState(false);
+  const [address, setAddress] = useState("");
+  const [searchButtonDisabled, setSearchButtonDisabled] = useState(true);
 
-  const handleSubmit = (event) => {
-    navigate(`/collection/${address}`);
-  };
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
+  const formik = useFormik({
+    initialValues: {},
+    validationSchema: searchSchema,
+    onSubmit: (values) => {
+      navigate(`/collection/${address}`);
+    },
+  });
+
   return (
     <div className="landing-page">
       <Typography sx={{ fontSize: "36px", fontWeight: 900 }}>
@@ -26,16 +36,29 @@ const MainPage = () => {
         elevation={12}
         sx={{ display: "flex", flexDirection: "column", width: "fit-content", m: 3, p: 3 }}
       >
-        <TextField
-          id="address-input"
-          label="Collection Address"
-          variant="outlined"
-          placeholder="Insert Collection Address"
-          onChange={handleAddressChange}
-          sx={{ m: 3, fontSize: { xs: "8px", md: "16px" }, width: { lg: "42ch" } }}
-        />
+        <form className="search-form" onSubmit={formik.handleSubmit}>
+          <TextField
+            id="addressInput"
+            name="addressInput"
+            label="Collection Address"
+            value={formik.values.addressInput}
+            onChange={formik.handleChange}
+            error={formik.touched.addressInput && Boolean(formik.errors.addressInput)}
+            helperText={formik.touched.addressInput && formik.errors.addressInput}
+            placeholder="Insert Collection Address"
+            sx={{ m: 3, fontSize: { xs: "8px", md: "16px" }, width: { lg: "42ch" } }}
+          />
 
-        <PrimaryButton text="Search Collection" icon="none" onClick={handleSubmit} />
+          <Button
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            sx={{ m: 2, width: "25ch" }}
+          >
+            SEARCH COLLECTION
+          </Button>
+        </form>
       </Paper>
       <Box>
         <Typography>Recomended Collections</Typography>
