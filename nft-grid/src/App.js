@@ -4,6 +4,7 @@ import CollectionPage from "./pages/CollectionPage/CollectionPage";
 import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "./theme/theme";
+import Lottie from "lottie-react";
 
 import "./App.css";
 

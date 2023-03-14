@@ -6,34 +6,18 @@ import Typography from "@mui/material/Typography";
 import "./CollectionCard.css";
 import { Skeleton } from "@mui/material";
 
-export default function CollectionCard({ collectionAddress, collectionName }) {
-  if (collectionAddress) {
+export default function CollectionCard({ collectionData }) {
+  console.log(collectionData);
+  if (collectionData?.name) {
     return (
       <Card className="collection-card" sx={{ justifyContent: "center", alignItems: "center" }}>
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-            <Typography
-              sx={{ fontFamily: "Inter", fontSize: { xs: "36px", md: "70px" }, fontWeight: "900" }}
-              component="div"
-              children={collectionName}
-            />
+            <Typography variant="h1Bold" children={collectionData.name} />
           </Box>
-          <Typography
-            sx={{
-              display: "flex",
-              width: "auto",
-              fontFamily: "Inter",
-              fontSize: { xs: "12px", sm: "16px" },
-              fontWeight: "400",
-              textAlign: "left",
-              borderColor: "primmary",
-              borderStyle: "solid",
-              p: 2,
-              borderRadius: "8px",
-            }}
-            component="div"
-            children={collectionAddress}
-          />
+          <Box className="outlined-box">
+            <Typography variant="bodyRegular" children={collectionData.address} />
+          </Box>
         </CardContent>
       </Card>
     );
@@ -46,7 +30,7 @@ export default function CollectionCard({ collectionAddress, collectionName }) {
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
             <Typography
-              sx={{ fontFamily: "Inter", fontSize: { xs: "36px", md: "70px" }, fontWeight: "900" }}
+              variant="h2"
               component="div"
               children={<Skeleton sx={{ width: { xs: 300, md: 400 } }} />}
             />
@@ -55,7 +39,7 @@ export default function CollectionCard({ collectionAddress, collectionName }) {
             sx={{
               display: "flex",
               width: "auto",
-              fontFamily: "Inter",
+
               fontSize: { xs: "12px", md: "16px" },
               fontWeight: "400",
               textAlign: "left",

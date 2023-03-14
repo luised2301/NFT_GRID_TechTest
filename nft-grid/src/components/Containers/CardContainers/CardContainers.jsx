@@ -4,7 +4,6 @@ import ItemCardLoading from "../../Cards/ItemCardLoading/ItemCardLoading";
 import Box from "@mui/material/Box";
 import "./CardContainers.css";
 export default function CardContainer({ itemsData, collectionName, collectionAddress }) {
-  console.log("itemsData", itemsData);
   return (
     <>
       <Box

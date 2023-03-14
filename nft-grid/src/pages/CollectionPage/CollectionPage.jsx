@@ -3,19 +3,18 @@ import "./CollectionPage.css";
 import CardContainer from "../../components/Containers/CardContainers/CardContainers";
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import useFetchCollectionMetadata from "../../services/useFetchCollectionMetadata";
 import CollectionCard from "../../components/Cards/CollectionCard/CollectionCard";
 import "./CollectionPage.css";
 import SearchBar from "../../components/Input/SearchBar/Search";
 import SecondaryButton from "../../components/Buttons/SecondaryButton/SecondaryButton";
-import useGetNFTContractMetadata from "../../services/useGetNftContractMetadata";
 import ItemCardLoading from "../../components/Cards/ItemCardLoading/ItemCardLoading";
 import useFetchCollectionItems from "../../services/useFetchCollectionItems";
+import useFetchCollectionItemsALCHEMY from "../../services/useFetchCollectionItemsALCHEMY.jsx";
 
 const CollectionPage = () => {
   const params = useParams();
   const { collectionAddress } = params;
-  const { collectionData, collectionLoading, collectionError } =
+  const { collectionData, collectionError, collectionLoading, nftsList, pageCursor } =
     useFetchCollectionItems(collectionAddress);
   const [collectionToDisplay, setCollectionToDisplay] = useState(false);
 
@@ -23,6 +22,7 @@ const CollectionPage = () => {
     setCollectionToDisplay(collectionData);
   }, [collectionData]);
 
+  useFetchCollectionItemsALCHEMY(collectionAddress);
   return (
     <div className="page-container">
       <Box
@@ -36,13 +36,9 @@ const CollectionPage = () => {
         }}
       >
         {collectionToDisplay ? (
-          <CollectionCard
-            collectionAddress={collectionData.result[0].token_address}
-            collectionName={collectionData.result[0].name}
-            collectionLoading={collectionLoading}
-          />
+          <CollectionCard collectionData={collectionData} />
         ) : (
-          <CollectionCard collectionLoading={collectionLoading} />
+          <CollectionCard />
         )}
       </Box>
       <Box
@@ -58,9 +54,7 @@ const CollectionPage = () => {
           flexDirection: { xs: "column", md: "row" },
         }}
       >
-        <Typography sx={{ fontSize: "30px", fontWeight: 900, fontFamily: "Inter" }}>
-          Browse Collection
-        </Typography>
+        <Typography sx={{ fontSize: "30px", fontWeight: 900 }}>Browse Collection</Typography>
         <Box
           sx={{
             flexDirection: { xs: "column", sm: "row" },
@@ -79,9 +73,9 @@ const CollectionPage = () => {
       </Box>
       {collectionToDisplay ? (
         <CardContainer
-          itemsData={collectionData.result}
-          collectionAddress={collectionData.result[0].token_address}
-          collectionName={collectionData.result[0].name}
+          itemsData={nftsList}
+          collectionAddress={collectionData.address}
+          collectionName={collectionData.name}
         ></CardContainer>
       ) : (
         <Box

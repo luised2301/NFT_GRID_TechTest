@@ -5,6 +5,8 @@ export default function useFetchCollectionItems(collectionAddress) {
   const [collectionData, setData] = useState(null);
   const [collectionError, setError] = useState(null);
   const [collectionLoading, setLoading] = useState(false);
+  const [nftsList, setNFTsList] = useState(null);
+  const [pageCursor, setPageCursor] = useState(null);
 
   useEffect(() => {
     (async function () {
@@ -19,7 +21,14 @@ export default function useFetchCollectionItems(collectionAddress) {
           }
         );
         if (response !== undefined) {
-          setData(response.data);
+          const collectionProperties = {
+            address: response.data.result[0].token_address,
+            name: response.data.result[0].name,
+          };
+
+          setData(collectionProperties);
+          setNFTsList(response.data.result);
+          setPageCursor(response.cursor);
         }
       } catch (err) {
         setError(err);
@@ -29,5 +38,5 @@ export default function useFetchCollectionItems(collectionAddress) {
     })();
   }, [collectionAddress]);
 
-  return { collectionData, collectionError, collectionLoading };
+  return { collectionData, collectionError, collectionLoading, nftsList, pageCursor };
 }

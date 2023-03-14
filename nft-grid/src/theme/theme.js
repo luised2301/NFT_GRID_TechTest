@@ -1,9 +1,45 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { green, purple, yellow, grey, red, blue, cyan } from "@mui/material/colors";
 
-const theme = createTheme({
+let theme = createTheme({
   typography: {
     fontFamily: ["Inter", "Arial"].join(","),
+    fontSize: 18,
+    fontWeightBold: 900,
+    h1Bold: {
+      fontWeight: "900",
+      fontSize: "2.5rem",
+      lineHeight: 1.77,
+      "@media (min-width:600px)": {
+        fontSize: "3.1rem",
+      },
+      "@media (min-width:900px)": {
+        fontSize: "4.1rem",
+      },
+      "@media (min-width:1200px)": {
+        fontSize: "4.7rem",
+      },
+      "@media (min-width:1536px)": {
+        fontSize: "5.4rem",
+      },
+    },
+
+    bodyRegular: {
+      fontSize: ".9rem",
+      fontWeight: "400",
+      "@media (min-width:600px)": {
+        fontSize: "1.2rem",
+      },
+      "@media (min-width:900px)": {
+        fontSize: "1.4rem",
+      },
+      "@media (min-width:1200px)": {
+        fontSize: "1.75rem",
+      },
+      "@media (min-width:1536px)": {
+        fontSize: "2rem",
+      },
+    },
   },
   palette: {
     primary: {
@@ -126,22 +162,7 @@ const theme = createTheme({
         },
       ],
     },
-    MuiMobileStepper: {
-      style: {
-        backgroundColor: "#42B7D0",
-        fontSize: "24px",
-        fontWeight: 800,
-        dot: {
-          backgroundColor: "#008000",
-          height: "15px",
-          width: "15px",
-        },
-        dotActive: {
-          backgroundColor: "#42B7D0",
-        },
-      },
-    },
   },
 });
-
+theme = responsiveFontSizes(theme);
 export default theme;

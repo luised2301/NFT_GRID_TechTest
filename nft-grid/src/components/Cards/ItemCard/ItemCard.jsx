@@ -35,7 +35,6 @@ export default function ItemCard({
           fontSize="16px"
           fontWeight={900}
           textAlign="left"
-          fontFamily="Inter"
           alignItems="center"
         >
           {parsedCardData.name}

@@ -13,6 +13,10 @@ import { AddToHomeScreenSharp } from "@mui/icons-material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Lottie from "lottie-react";
+import FileDowload from "../../assets/icons/File Download.json";
+import Hamster from "../../assets/icons/Aniki Hamster.json";
+import Glass from "../../assets/icons/Glass.json";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -27,7 +31,9 @@ const MainPage = () => {
 
   return (
     <div className="landing-page">
-      <Typography sx={{ fontSize: "36px", fontWeight: 900 }}>
+      <Lottie animationData={Hamster} />
+      <Lottie animationData={Glass} />
+      <Typography variant="h2" fontWeight="bold">
         Insert a NFT Collection Address to browse
       </Typography>
       <Paper
