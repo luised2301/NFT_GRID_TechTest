@@ -1,63 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Network, Alchemy } from "alchemy-sdk";
 
-export default function useFetchCollectionMetadata(collectionAddress) {
-  const [collectionData, setData] = useState(null);
-  const [collectionError, setError] = useState(null);
-  const [collectionLoading, setLoading] = useState(false);
-  const [collectionMetadata, setCollectionMetadata] = useState(false);
-  const [nftList, setNftList] = useState(null);
-  const [tokenId, setTokenID] = useState(null);
-  const [tokenDetails, setTokenDetails] = useState(null);
+export default function useFetchCollectionMetadata(address) {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  async function getCollectionMetadata(collectionAddress) {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTContractMetadata?address=${collectionAddress}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response !== undefined) {
-        setCollectionMetadata(response.data);
-      }
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function getTokenDetails(collectionAddress, tokenId) {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTMetadata?address=${collectionAddress}&tokenId=${tokenId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response !== undefined) {
-        setTokenDetails(response.data);
-      }
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
+  const apiKey = process.env.REACT_APP_ALCHEMY_API_KEY;
   useEffect(() => {
     (async function () {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://us-central1-moralisapicall-b62d8.cloudfunctions.net/getNFTsFromCollection?limit=20&address=${collectionAddress}`,
+          `https://eth-mainnet.g.alchemy.com/nft/v2/${apiKey}/getContractMetadata?contractAddress=${address}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -65,8 +21,7 @@ export default function useFetchCollectionMetadata(collectionAddress) {
           }
         );
         if (response !== undefined) {
-          setNftList(response.data.result);
-          getTokenDetails(collectionAddress, response.data.result[0].token_id);
+          console.log(response);
         }
       } catch (err) {
         setError(err);
@@ -74,7 +29,7 @@ export default function useFetchCollectionMetadata(collectionAddress) {
         setLoading(false);
       }
     })();
-  }, [collectionAddress]);
+  }, [address]);
 
-  return { collectionData, collectionError, collectionLoading, nftList };
+  return { data, error, loading };
 }

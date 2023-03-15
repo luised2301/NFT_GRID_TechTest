@@ -17,6 +17,7 @@ const CollectionPage = () => {
   const { collectionAddress } = params;
   const { collectionData, collectionLoading, collectionError } =
     useFetchCollectionItems(collectionAddress);
+  const { data, loading, error } = useFetchCollectionMetadata(collectionAddress);
   const [collectionToDisplay, setCollectionToDisplay] = useState(false);
 
   useEffect(() => {
